@@ -91,7 +91,6 @@
         </div>
     </footer>
 
-    <!-- Modal for adding a book -->
     <div class="modal fade mt-5" id="modal-form-book" tabindex="-1" aria-labelledby="modal-form-bookLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

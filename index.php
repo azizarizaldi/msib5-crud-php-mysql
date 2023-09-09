@@ -96,7 +96,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-form-label">Tambah Buku</h5>
+                    <h5 class="modal-title" id="modal-form-label">-</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close-modal"></button>
                 </div>
                 <form id="form-buku">
@@ -246,12 +246,12 @@
         }
 
         function resetID() {
-            document.getElementById("modal-form-label").text = "Tambah Buku";
+            document.getElementById("modal-form-label").innerText = "Tambah Buku";
             document.getElementById("book-id").value = "";
         }
 
         function editBook(id, title, author) {
-            document.getElementById("modal-form-label").text = "Ubah Buku";
+            document.getElementById("modal-form-label").innerText = "Ubah Buku";
             document.getElementById("book-id").value = id;
             document.getElementById("book-title").value = title;
             document.getElementById("author").value = author;

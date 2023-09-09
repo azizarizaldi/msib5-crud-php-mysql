@@ -186,7 +186,11 @@
                             <td>${book.title}</td>
                             <td>${book.author}</td>
                             <td>${book.created_at}</td>
-                            <td class="text-center">-</td>
+                            <td class="text-center">
+                                <button class="btn btn-danger btn-sm" onclick="deleteBook(${book.id})">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </td>
                         </tr>
                     `;
                     tbody.innerHTML += row;
@@ -215,6 +219,26 @@
             document.getElementById("book-title").value = '';
             document.getElementById("author").value = '';
         }
+
+        function deleteBook(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {
+                fetch(`helper/delete.php?id=${id}`, {
+                    method: "DELETE",
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        load_books();
+                    }
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Terjadi kesalahan saat mengirimkan permintaan penghapusan.");
+                });
+            }
+        }
+
     </script>
 
 </body>

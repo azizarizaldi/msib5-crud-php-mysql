@@ -1,0 +1,82 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.main-content {
+  margin-bottom: 170px;
+}        
+
+.card {
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #0a4275;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.profile-img {
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+.empty-logo {
+    max-width: 300px;
+    border-radius: 50%;
+
+}
+
+.header {
+    z-index: 1111;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0px 0;
+    top: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #0a4275;
+    box-shadow: 0 -4px 6px rgba(0, 19, 71, 0.219); /* Menambahkan shadow ke bawah */
+}
+
+.footer {
+    border-top: 1px solid #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0px 0;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #0a4275;
+}
+ 
+
+.footer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo {
+    max-width: 50px;
+}
+
+@media screen and (min-width: 991px) {
+    /* Properti CSS yang akan diubah jika layar lebih kecil dari 769px */
+    .remove-pl {
+      padding-left: 0px !important;
+    }
+    .remove-pr {
+      padding-right: 0px !important;
+    }
+  }
+  

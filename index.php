@@ -41,7 +41,7 @@
                                 </button>
                             </div>
                             <div class="col-lg-3 mb-0 remove-pl">
-                                <button class="btn btn-outline-primary btn-block w-100" type="button" id="btn-tambah" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                                <button class="btn btn-outline-primary btn-block w-100" type="button" id="btn-tambah" data-bs-toggle="modal" data-bs-target="#modal-form-book" onclick="resetID()">
                                     <i class="fas fa-plus fa-sm"></i> Tambah buku
                                 </button>
                             </div>
@@ -92,15 +92,16 @@
     </footer>
 
     <!-- Modal for adding a book -->
-    <div class="modal fade mt-5" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+    <div class="modal fade mt-5" id="modal-form-book" tabindex="-1" aria-labelledby="modal-form-bookLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addBookModalLabel">Tambah Buku</h5>
+                    <h5 class="modal-title" id="modal-form-label">Tambah Buku</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close-modal"></button>
                 </div>
                 <form id="form-buku">
                     <div class="modal-body">
+                    <input type="hidden" class="form-control" id="book-id" name="book-id">
                         <div class="mb-3">
                             <label for="book-title" class="form-label">Judul Buku <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="book-title" name="book-title" required oninvalid="this.setCustomValidity('Masukan judul buku')" oninput="this.setCustomValidity('')">
@@ -123,14 +124,16 @@
         document.getElementById("form-buku").addEventListener("submit", function (event) {
             event.preventDefault();
             
+            const id = document.getElementById("book-id").value;
             const book_title = document.getElementById("book-title").value;
             const author     = document.getElementById("author").value;
 
             const formData = new FormData();
+            formData.append("id", id);
             formData.append("book-title", book_title);
             formData.append("author", author);
 
-            fetch("helper/add.php", {
+            fetch("helper/action.php", {
                 method: "POST",
                 body: formData,
             })
@@ -187,7 +190,10 @@
                             <td>${book.author}</td>
                             <td>${book.created_at}</td>
                             <td class="text-center">
-                                <button class="btn btn-danger btn-sm" onclick="deleteBook(${book.id})">
+                                <button class="btn btn-primary btn-sm mb-1" onclick="editBook(${book.id}, '${book.title}', '${book.author}')">
+                                    <i class="fas fa-edit"></i> Ubah
+                                </button>
+                                <button class="btn btn-danger btn-sm mb-1" onclick="deleteBook(${book.id})">
                                     <i class="fas fa-trash"></i> Hapus
                                 </button>
                             </td>
@@ -239,6 +245,19 @@
             }
         }
 
+        function resetID() {
+            document.getElementById("modal-form-label").text = "Tambah Buku";
+            document.getElementById("book-id").value = "";
+        }
+
+        function editBook(id, title, author) {
+            document.getElementById("modal-form-label").text = "Ubah Buku";
+            document.getElementById("book-id").value = id;
+            document.getElementById("book-title").value = title;
+            document.getElementById("author").value = author;
+            const bookModal = new bootstrap.Modal(document.getElementById("modal-form-book"));
+            bookModal.show();
+        }        
     </script>
 
 </body>
